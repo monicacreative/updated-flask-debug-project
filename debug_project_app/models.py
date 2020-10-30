@@ -15,7 +15,7 @@ from flask_login import UserMixin
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class User(db.Model,UserMixin):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(150), nullable = False, unique = True)
     email = db.Column(db.String(150), nullable = False, unique = True)
@@ -27,12 +27,12 @@ class User(db.Model,UserMixin):
         self.email = email
         self.password = self.set_password(password)
 
-        def set_password(self,password):
-            self.pw_hash = generate_password_hash(password)
-            return self.pw_hash
+    def set_password(self,password):
+        self.pw_hash = generate_password_hash(password)
+        return self.pw_hash
 
     def __repr__(self):
-        return f'{self.username} has been created with {self.email}'
+        return f'{self.username} has been created with the following email: {self.email}'
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -47,4 +47,4 @@ class Post(db.Model):
         self.user_id = user_id
 
     def __repr__(self):
-        return f'The title of the post is {self.title} \n and the content is {self.content}.'
+        return f'The title of the post is {self.title} \n and the content is {self.content}'

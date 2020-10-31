@@ -11,7 +11,7 @@
 
     {% if current_user.is_authenticated %}
 
-        {% for post in posts %}
+        {% for post in user_posts %}
             <div class="container">
                 <h3>
                     <a href="{{ url_for('post_detail', post_id = post.id) }}">{{ post.title }}</a>

@@ -49,11 +49,11 @@ def posts():
     if request.method == 'POST' and post.validate():
         title = post.title.data
         content = post.content.data
-        user_id = current_user.data
+        user_id = current_user.id
         print('\n',title,content)
         post = Post(title,content,user_id)
 
-        db.session.add(post,posts)
+        db.session.add(post)
 
         db.session.commit()
         return redirect(url_for('posts'))
